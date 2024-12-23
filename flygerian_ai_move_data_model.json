@@ -1,0 +1,63 @@
+{
+  "ProjectName": "Flygerian AI Move",
+  "Description": "A comprehensive data model for managing smart agreements and drone logistics in the mineral trade industry.",
+  "Version": "1.0",
+  "Entities": {
+    "Users": {
+      "UserID": "UUID",
+      "Username": "String",
+      "Email": "String",
+      "Role": ["Buyer", "Seller", "Admin"],
+      "KYCStatus": "Boolean"
+    },
+    "Minerals": {
+      "MineralID": "UUID",
+      "Name": "String",
+      "Type": ["Diamond", "Gold", "Lithium", "Cobalt", "Palladium"],
+      "Weight": "Float",
+      "Value": "Decimal"
+    },
+    "Drones": {
+      "DroneID": "UUID",
+      "Model": ["MK30", "EHANG 216-S", "Custom Model"],
+      "Status": ["Idle", "In Transit", "Maintenance"],
+      "Capacity": "Float"
+    },
+    "SmartAgreements": {
+      "AgreementID": "UUID",
+      "UserID": "UUID",
+      "MineralID": "UUID",
+      "AgreementDate": "Date",
+      "ExpirationDate": "Date",
+      "Terms": "String",
+      "Status": ["Active", "Completed", "Cancelled"]
+    },
+    "Transactions": {
+      "TransactionID": "UUID",
+      "AgreementID": "UUID",
+      "DroneID": "UUID",
+      "DeliveryDate": "Date",
+      "Amount": "Decimal"
+    }
+  },
+  "Relationships": {
+    "UserMinerals": {
+      "UserID": "FK to Users",
+      "MineralID": "FK to Minerals"
+    },
+    "UserAgreements": {
+      "UserID": "FK to Users",
+      "AgreementID": "FK to SmartAgreements"
+    }
+  },
+  "Settings": {
+    "DeliveryFees": {
+      "Standard": "Decimal",
+      "Urgent": "Decimal"
+    },
+    "AIModels": {
+      "MonitoringRisks": "Boolean",
+      "ContentValidation": "Boolean"
+    }
+  }
+}
